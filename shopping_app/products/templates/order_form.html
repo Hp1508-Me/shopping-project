@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Place an Order{% endblock %}
+
+{% block content %}
+<h1>Place an Order</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="product">Product:</label>
+        <select name="product" id="product" class="form-control">
+            {% for product in products %}
+            <option value="{{ product.id }}">{{ product.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" class="form-control" min="1" max="10" value="1">
+    </div>
+    <button type="submit" class="btn btn-primary">Place Order</button>
+</form>
+{% endblock %}
